@@ -1,0 +1,32 @@
+.mainFormContainer {
+  position: fixed;
+  width: 30%;
+  max-width: 600px;
+  min-width: 250px;
+  border: 1px solid skyblue;
+  box-sizing: border-box;
+  padding: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.backBtn{
+  display: inline-block;
+}
+
+input{
+  width: 97%;
+  border: none;
+  outline: none;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  margin: 5px;
+  padding: 8px;
+  transition: 0.5s;
+}
+
+input:focus{
+  border: 1px solid #2478FF;
+  transition: 0.5s;
+}

@@ -1,0 +1,36 @@
+.listContacts {
+  position: fixed;
+  width: 50%;
+  max-width: 600px;
+  min-width: 250px;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  padding: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.contactControls{
+  margin: 10px;
+}
+.contact {
+  display: flex;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: 0.5s;
+}
+.contact:hover{
+  border: 1px solid skyblue;
+  transition: 0.5s;
+}
+.title {
+  flex: 1;
+  display: inline-block;
+}
+.editBtn{
+  flex: 0.2;
+}
+.info {
+  display: none;
+}
