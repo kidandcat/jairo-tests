@@ -1,8 +1,16 @@
 var cc = document.querySelectorAll('#target .contact');
 for (var i = 0; i < cc.length; i++) {
-  console.log('adding event listener to ' + cc[i]);
   cc[i].addEventListener('click', function() {
-    var id = this.querySelector('input').value;
+    this.querySelector('.info').classList.toggle('hide');
+  });
+}
+
+var cc2 = document.querySelectorAll('#target .editBtn');
+for (var i = 0; i < cc2.length; i++) {
+  cc2[i].addEventListener('click', function() {
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    var id = this.parentNode.querySelector('input').value;
     viewManager.contacts.forEach(function(c){
       if(c._id == id){
         viewManager.renderView('form', 'viewManager.contacts[' + viewManager.contacts.indexOf(c) + ']');
@@ -10,8 +18,6 @@ for (var i = 0; i < cc.length; i++) {
     });
   });
 }
-
-
 document.querySelector('#newBtn').addEventListener('click', function(){
   viewManager.renderView('form');
 });

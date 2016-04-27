@@ -1,14 +1,19 @@
-window.viewManager.loadView('contacts').then(function(ee) {
-  window.viewManager.renderView('contacts', 'viewManager.contacts').then(function() {
+window.allReadyNumber = window.allReadyNumber?window.allReadyNumber+1:1;
+window.allReadyStart = function(){
+  window.viewManager.loadView('contacts').then(function(ee) {
+    window.viewManager.renderView('contacts', 'viewManager.contacts').then(function() {
 
+    });
+  }).error(function(e) {
+    alert(e);
   });
-}).error(function(e) {
-  alert(e);
-});
 
-window.viewManager.loadView('form').error(function(e) {
-  alert(e);
-});
+  window.viewManager.loadView('form').error(function(e) {
+    alert(e);
+  });
+};
+
+
 
 
 

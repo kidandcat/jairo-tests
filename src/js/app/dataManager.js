@@ -7,9 +7,9 @@ window.dataManager = (function() {
 
     window.database_api.insert(contact, function(err, newContact) {
       if (err) {
-        (error || Function)(err);
+        (error)?error(err):null;
       } else {
-        (success || Function)(newContact);
+        (success)?success(newContact):null;
         viewManager.update();
       }
     });
@@ -32,9 +32,9 @@ window.dataManager = (function() {
 
     window.database_api.find(query, { firstName: 1 }, function(err, contacts) {
       if (err) {
-        (error || Function)(err);
+        (error)?error(err):null;
       } else {
-        (success || Function)(contacts);
+        (success)?success(contacts):null;
       }
     });
 
@@ -56,9 +56,9 @@ window.dataManager = (function() {
 
     window.database_api.find({}, { firstName: 1 }, function(err, contacts) {
       if (err) {
-        (error || Function)(err);
+        (error)?error(err):null;
       } else {
-        (success || Function)(contacts);
+        (success)?success(contacts):null;
       }
     });
 
@@ -80,9 +80,9 @@ window.dataManager = (function() {
 
     window.database_api.update(query, changes, function(err, contacts) {
       if (err) {
-        (error || Function)(err);
+        (error)?error(err):null;
       } else {
-        (success || Function)(contacts);
+        (success)?success(contacts):null;
         viewManager.update();
       }
     });
@@ -105,9 +105,9 @@ window.dataManager = (function() {
 
     window.database_api.delete(query, function(err, numRemoved) {
       if (err) {
-        (error || Function)(err);
+        (error)?error(err):null;
       } else {
-        (success || Function)(numRemoved);
+        (success)?success(numRemoved):null;
         viewManager.update();
       }
     });
@@ -124,5 +124,6 @@ window.dataManager = (function() {
     };
   }
 
+  window.allReadyNumber = window.allReadyNumber?window.allReadyNumber+1:1;
   return obj;
 })();

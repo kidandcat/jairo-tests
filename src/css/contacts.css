@@ -32,5 +32,9 @@
   flex: 0.2;
 }
 .info {
+
+}
+
+.hide{
   display: none;
 }

@@ -15,10 +15,10 @@ window.viewManager = (function() {
       if (xhttp.readyState == 4 && xhttp.status == 200) {
         _views[viewName] = xhttp.response;
         obj.loadScript(viewName).then(function() {
-          (success || Function)(_views);
+          (success)?success(_views):null;
         });
       } else if (xhttp.readyState == 4) {
-        (error || Function)(xhttp.status);
+        (error)?error(xhttp.status):null;
       }
     };
     xhttp.open("GET", "/src/views/" + viewName + '.html', true);
@@ -44,9 +44,9 @@ window.viewManager = (function() {
     xhttp.onreadystatechange = function() {
       if (xhttp.readyState == 4 && xhttp.status == 200) {
         _scripts[viewName] = "/src/js/views/" + viewName + '.js';
-        (success || Function)();
+        (success)?success():null;
       } else if (xhttp.readyState == 4) {
-        (error || Function)(xhttp.status);
+        (error)?error(xhttp.status):null;
       }
     };
     xhttp.open("GET", "/src/js/views/" + viewName + '.js', true);
@@ -78,7 +78,7 @@ window.viewManager = (function() {
           obj.contacts = c;
           updateView(actualUpdater);
           obj.renderScript(viewName);
-          (success || Function)();
+          (success)?success():null;
         });
 
       });
@@ -135,27 +135,21 @@ window.viewManager = (function() {
       var dataSource = aObjects;
     }
 
+    var target = document.querySelector('#target');
+    var template = document.querySelector('#template');
+    var code = template.innerHTML;
+    target.innerHTML = '';
+
     if (typeof dataSource != 'object') {
       console.log('unknown data source for render "' + actualView + '" view!');
-      var target = document.querySelector('#target');
-      var template = document.querySelector('#template');
-      var code = template.innerHTML;
       target.innerHTML = code;
     } else if (dataSource && typeof dataSource.forEach != 'function') {
-      var target = document.querySelector('#target');
-      var template = document.querySelector('#template');
-      var code = template.innerHTML;
-      target.innerHTML = '';
       var out = code;
       for (var property in dataSource) {
         var out = out.split('##' + property + '##').join(dataSource[property]);
       }
       target.innerHTML += purgeTemplateVars(out);
     } else if (dataSource) {
-      var target = document.querySelector('#target');
-      var template = document.querySelector('#template');
-      var code = template.innerHTML;
-      target.innerHTML = '';
       dataSource.forEach(function(cc) {
         var out = code;
         for (var property in cc) {
@@ -164,9 +158,6 @@ window.viewManager = (function() {
         target.innerHTML += purgeTemplateVars(out);
       });
     } else {
-      var target = document.querySelector('#target');
-      var template = document.querySelector('#template');
-      var code = template.innerHTML;
       target.innerHTML += purgeTemplateVars(code);
     }
   }
@@ -183,5 +174,6 @@ window.viewManager = (function() {
   }
 
 
+  window.allReadyNumber = window.allReadyNumber?window.allReadyNumber+1:1;
   return obj;
 })();
