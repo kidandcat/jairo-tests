@@ -7,8 +7,8 @@ window.database_api = (function(){
   }
 
   //TODO move sort up, to dataManager
-  obj.find = function(query, cb){
-    _db.find(query).sort({ firstName: 1 }).sort({ lastName: 1 }).exec(cb);
+  obj.find = function(query, sort, cb){
+    _db.find(query).sort(sort || {}).exec(cb);
   }
 
   obj.update = function(query, changes, cb){

@@ -10,3 +10,8 @@ for (var i = 0; i < cc.length; i++) {
     });
   });
 }
+
+
+document.querySelector('#newBtn').addEventListener('click', function(){
+  viewManager.renderView('form');
+});

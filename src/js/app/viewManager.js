@@ -14,7 +14,7 @@ window.viewManager = (function() {
     xhttp.onreadystatechange = function() {
       if (xhttp.readyState == 4 && xhttp.status == 200) {
         _views[viewName] = xhttp.response;
-        obj.loadScript(viewName).then(function(){
+        obj.loadScript(viewName).then(function() {
           (success || Function)(_views);
         });
       } else if (xhttp.readyState == 4) {
@@ -70,15 +70,17 @@ window.viewManager = (function() {
 
     if (_views && _views[viewName]) {
       actualView = viewName;
-      actualUpdater = updateQuery;
+      actualUpdater = updateQuery || null;
       obj.update().then(function(c) {
         obj.contacts = c;
+
         dataManager.listContacts().then(function(c) {
           obj.contacts = c;
           updateView(actualUpdater);
           obj.renderScript(viewName);
           (success || Function)();
         });
+
       });
       document.querySelector('body').innerHTML = _views[viewName];
     } else {
@@ -101,7 +103,7 @@ window.viewManager = (function() {
   obj.renderScript = function(viewName) {
     if (_scripts[viewName]) {
       var oldScript = document.getElementById("view-script");
-      if(oldScript){
+      if (oldScript) {
         oldScript.parentNode.removeChild(oldScript);
       }
       var ss = document.createElement('script');
@@ -139,7 +141,7 @@ window.viewManager = (function() {
       var template = document.querySelector('#template');
       var code = template.innerHTML;
       target.innerHTML = code;
-    } else if (typeof dataSource.forEach != 'function') {
+    } else if (dataSource && typeof dataSource.forEach != 'function') {
       var target = document.querySelector('#target');
       var template = document.querySelector('#template');
       var code = template.innerHTML;
@@ -149,7 +151,7 @@ window.viewManager = (function() {
         var out = out.split('##' + property + '##').join(dataSource[property]);
       }
       target.innerHTML += purgeTemplateVars(out);
-    } else {
+    } else if (dataSource) {
       var target = document.querySelector('#target');
       var template = document.querySelector('#template');
       var code = template.innerHTML;
@@ -161,6 +163,11 @@ window.viewManager = (function() {
         }
         target.innerHTML += purgeTemplateVars(out);
       });
+    } else {
+      var target = document.querySelector('#target');
+      var template = document.querySelector('#template');
+      var code = template.innerHTML;
+      target.innerHTML += purgeTemplateVars(code);
     }
   }
 

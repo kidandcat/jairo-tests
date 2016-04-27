@@ -30,7 +30,7 @@ window.dataManager = (function() {
     var success = null;
     var error = null;
 
-    window.database_api.find(query, function(err, contacts) {
+    window.database_api.find(query, { firstName: 1 }, function(err, contacts) {
       if (err) {
         (error || Function)(err);
       } else {
@@ -54,7 +54,7 @@ window.dataManager = (function() {
     var success = null;
     var error = null;
 
-    window.database_api.find({}, function(err, contacts) {
+    window.database_api.find({}, { firstName: 1 }, function(err, contacts) {
       if (err) {
         (error || Function)(err);
       } else {
@@ -103,11 +103,11 @@ window.dataManager = (function() {
     var success = null;
     var error = null;
 
-    window.database_api.delete(query, function(err, contacts) {
+    window.database_api.delete(query, function(err, numRemoved) {
       if (err) {
         (error || Function)(err);
       } else {
-        (success || Function)(contacts);
+        (success || Function)(numRemoved);
         viewManager.update();
       }
     });
