@@ -3,19 +3,22 @@
 </div>
 
 <div id="template">
-  <div class="formControls">
-    <button id="backBtn" class="backBtn" type="button">Back</button>
-    <button id="deleteBtn" class="deleteBtn" type="button">Delete</button>
-  </div>
-  <div class="formContainer">
-    <input type="text" placeholder="First Name" value="##firstName##">
-    <input type="text" placeholder="Last Name" value="##lastName##">
-    <input type="text" placeholder="Email" value="##email##">
-    <input type="text" placeholder="Country" value="##country##">
-    <input type="hidden" id="id" value="##_id##">
-  </div>
-  <div class="formSubmit">
-    <button id="saveBtn" class="saveBtn" type="button">Save</button>
-  </div>
-
+  <form id="form">
+    <div class="formControls">
+      <button id="backBtn" class="backBtn" type="button">Back</button>
+      <button id="deleteBtn" class="deleteBtn" type="button">Delete</button>
+    </div>
+    <div class="formContainer">
+      <input type="text" placeholder="First Name" value="##firstName##" minlength="3" maxlength="50" required>
+      <input type="text" placeholder="Last Name" value="##lastName##" minlength="3" maxlength="50" required>
+      <input type="email" placeholder="Email" value="##email##" required>
+      <select placeholder="Country" value="##country##" required>
+      </select>
+      <input type="hidden" id="id" value="##_id##">
+    </div>
+    <div class="formSubmit">
+      <button id="saveBtn" class="saveBtn" type="button">Save</button>
+    </div>
+    <input type="submit" id="submit" class="hide">
+  </form>
 </div>

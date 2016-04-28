@@ -1,5 +1,6 @@
 window.dataManager = (function() {
   var obj = {};
+  obj.countries;
 
   obj.createContact = function(contact) {
     var success = null;
@@ -123,6 +124,18 @@ window.dataManager = (function() {
       }
     };
   }
+
+
+  //countries
+  //http://data.okfn.org/data/core/country-list/r/data.json
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      obj.countries = JSON.parse(xhttp.response);
+    }
+  };
+  xhttp.open("GET", 'http://data.okfn.org/data/core/country-list/r/data.json', true);
+  xhttp.send();
 
   window.allReadyNumber = window.allReadyNumber?window.allReadyNumber+1:1;
   return obj;

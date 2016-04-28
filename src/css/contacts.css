@@ -49,6 +49,7 @@
     display: flex;
     flex-direction: column;
     width: 80%;
+    pointer-events: none;
 }
 
 .info .elem{
@@ -70,6 +71,7 @@
   opacity: 1;
   transform: translateY(70%);
   transition: 0.5s;
+  pointer-events: all;
 }
 
 .animationContact{
