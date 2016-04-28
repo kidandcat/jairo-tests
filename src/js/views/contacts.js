@@ -9,8 +9,7 @@ for (var i = 0; i < cc.length; i++) {
 
 var cc2 = document.querySelectorAll('#target .editBtn');
 for (var i = 0; i < cc2.length; i++) {
-  cc2[i].addEventListener('click', function() {
-    event.cancelBubble = true;
+  cc2[i].addEventListener('click', function(event) {
     if(event.stopPropagation) event.stopPropagation();
     var id = this.parentNode.querySelector('input').value;
     viewManager.contacts.forEach(function(c){

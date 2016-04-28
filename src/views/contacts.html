@@ -1,4 +1,4 @@
-<div class="listContacts">
+<div class="listContacts mainContainer">
   <div class="contactControls">
     <button id="newBtn" class="newBtn" type="button">New Contact</button>
   </div>
@@ -14,8 +14,14 @@
       <span class="contactLastName">##lastName##</span>
     </div>
     <div class="info">
-      <span class="contactEmail">##email##</span>
-      <span class="contactCountry">##country##</span>
+      <div class="elem">
+        <span>Email:</span>
+        <span class="contactEmail">##email##</span>
+      </div>
+      <div class="elem">
+        <span>Country:</span>
+        <span class="contactCountry">##country##</span>
+      </div>
     </div>
     <button type="button" class="editBtn">Edit</button>
     <input type="hidden" value="##_id##">

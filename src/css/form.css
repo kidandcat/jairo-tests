@@ -15,6 +15,27 @@
   display: inline-block;
 }
 
+.formControls{
+  display: flex;
+}
+
+.deleteBtn{
+  background-color: #F78181;
+}
+
+.saveBtn{
+  width: 93%;
+  margin: 10px;
+  padding: 5px;
+  background-color: #088A29;
+}
+
+.formControls button {
+  flex: 1;
+  margin: 10px;
+  padding: 5px;
+}
+
 input{
   width: 97%;
   border: none;
