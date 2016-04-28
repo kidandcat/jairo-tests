@@ -1,40 +1,61 @@
 .listContacts {
-  position: fixed;
-  width: 50%;
-  max-width: 600px;
-  min-width: 250px;
-  border: 1px solid lightgray;
-  box-sizing: border-box;
-  padding: 10px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+    position: fixed;
+    width: 50%;
+    max-width: 600px;
+    min-width: 250px;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    padding: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
-.contactControls{
-  margin: 10px;
+.contactControls {
+    margin: 10px;
 }
 .contact {
-  display: flex;
-  border: 1px solid lightgray;
-  box-sizing: border-box;
-  padding: 10px;
-  transition: 0.5s;
+    display: flex;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    padding: 10px;
+    transition: 0.5s;
+    height: 43px;
 }
-.contact:hover{
-  border: 1px solid skyblue;
-  transition: 0.5s;
+.contact:hover {
+    border: 1px solid skyblue;
+    transition: 0.5s;
 }
 .title {
-  flex: 1;
-  display: inline-block;
+    flex: 1;
+    display: inline-block;
 }
-.editBtn{
-  flex: 0.2;
+.editBtn {
+    flex: 0.2;
+    height: 24px;
 }
 .info {
-
+    position: absolute;
+    width: 93%;
+    height: 40px;
+    background-color: white;
+    border: 1px solid red;
+    left: 2%;
+    transition: 0.5s;
+    opacity: 0;
+    padding: 10px
 }
 
-.hide{
-  display: none;
+.hide {
+    display: none;
+}
+
+.animationInfo{
+  opacity: 1;
+  transform: translateY(70%);
+  transition: 0.5s;
+}
+
+.animationContact{
+  height: 120px;
+  transition: 1s;
 }

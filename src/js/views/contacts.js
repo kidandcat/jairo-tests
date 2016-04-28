@@ -1,7 +1,9 @@
 var cc = document.querySelectorAll('#target .contact');
 for (var i = 0; i < cc.length; i++) {
   cc[i].addEventListener('click', function() {
-    this.querySelector('.info').classList.toggle('hide');
+    var x = this;
+    x.querySelector('.info').classList.toggle('animationInfo');
+    x.classList.toggle('animationContact');
   });
 }
 

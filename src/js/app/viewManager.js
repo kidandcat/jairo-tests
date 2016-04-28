@@ -21,7 +21,7 @@ window.viewManager = (function() {
         (error)?error(xhttp.status):null;
       }
     };
-    xhttp.open("GET", "/src/views/" + viewName + '.html', true);
+    xhttp.open("GET", "src/views/" + viewName + '.html', true);
     xhttp.send();
 
     return {
@@ -43,13 +43,13 @@ window.viewManager = (function() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (xhttp.readyState == 4 && xhttp.status == 200) {
-        _scripts[viewName] = "/src/js/views/" + viewName + '.js';
+        _scripts[viewName] = "src/js/views/" + viewName + '.js';
         (success)?success():null;
       } else if (xhttp.readyState == 4) {
         (error)?error(xhttp.status):null;
       }
     };
-    xhttp.open("GET", "/src/js/views/" + viewName + '.js', true);
+    xhttp.open("GET", "src/js/views/" + viewName + '.js', true);
     xhttp.send();
 
     return {
@@ -69,6 +69,7 @@ window.viewManager = (function() {
     var error = null;
 
     if (_views && _views[viewName]) {
+      document.querySelector('body').classList.remove('animate');
       actualView = viewName;
       actualUpdater = updateQuery || null;
       obj.update().then(function(c) {
@@ -83,6 +84,7 @@ window.viewManager = (function() {
 
       });
       document.querySelector('body').innerHTML = _views[viewName];
+      document.querySelector('body').classList.add('animate');
     } else {
       window.log_error('Script does not exists');
     }
