@@ -59,6 +59,7 @@ function delete_() {
 
 
 function save() {
+    console.log('save launched');
     var form = document.querySelector('#form');
     //check if its not valid
     if (!form.checkValidity()) {
@@ -78,6 +79,7 @@ function save() {
         country: select.selectedOptions[0].value
     };
     if (id != '' && typeof id != 'undefined') {
+      console.log('update');
         window.dataManager.updateContact({
             _id: id
         }, contact).then(function() {
@@ -87,6 +89,7 @@ function save() {
             log_error(e);
         });
     } else {
+      console.log('create');
         window.dataManager.createContact(contact).then(function() {
             console.log('Contact created');
             window.viewManager.renderView('contacts', 'viewManager.contacts');

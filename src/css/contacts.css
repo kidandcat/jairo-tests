@@ -58,8 +58,10 @@
   display: flex;
 }
 
-.info .elem span{
+.info .elem span, a{
   margin-right: 5%;
+  width: 50%;
+  display: inline-block;
   flex: 1;
   text-align: center;
 }
