@@ -138,7 +138,7 @@ window.viewManager = (function() {
      * * * * * * * * *
      */
 
-    function updateView(aObjects) {
+    function updateView(aObjects) {//Run each time the database is modified
         log_info('UpdateView launched');
         var dataSource;
         if (typeof aObjects == 'string') { //it is a source path, we will access it using eval, it will bind object changes into the view

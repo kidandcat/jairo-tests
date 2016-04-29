@@ -3,7 +3,7 @@
  *  View Script  *
  * * * * * * * * *
  *
- * This is a view script, it will be loaded when requesting a load view.
+ * This is a view script, it will be downloaded when requesting a load view.
  * It will be executed each time the view is rendered.
  */
 
