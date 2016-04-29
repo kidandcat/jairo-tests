@@ -12,7 +12,7 @@ window.dataManager = (function() {
                 (error) ? error(err): null;
             } else {
                 (success) ? success(newContact): null; //Success, call promise
-                viewManager.update(); //Database modified, trigger update event in view
+                //viewManager.update(); //Database modified, trigger update event in view
                 log_info('DataManager contact created');
             }
         });
@@ -101,7 +101,7 @@ window.dataManager = (function() {
                 (error) ? error(err): null;
             } else {
                 (success) ? success(contacts): null;
-                viewManager.update(); //Database modified, triggering update on the view
+                //viewManager.update(); //Database modified, triggering update on the view
                 log_info('Updated: ', contacts);
             }
         });
@@ -129,7 +129,7 @@ window.dataManager = (function() {
                 (error) ? error(err): null;
             } else {
                 (success) ? success(numRemoved): null;
-                viewManager.update(); //Database modified, triggering update on view
+                //viewManager.update(); //Database modified, triggering update on view
                 log_info('Contact deleted: ', numRemoved);
             }
         });

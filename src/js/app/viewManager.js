@@ -76,17 +76,18 @@ window.viewManager = (function() {
         var error = null; //Promise
 
         if (_views && _views[viewName]) { //if view exists
+            log_info('ViewManager rendering view ', viewName);
             document.querySelector('body').classList.remove('animate'); //Remove .animation for smooth transition (opacity 1 to 0)
             actualView = viewName; //Actual view udpate
             actualUpdater = updateQuery || null;
             dataManager.listContacts().then(function(c) {
+                document.querySelector('body').innerHTML = _views[viewName]; //Load view HTML into body
+                document.querySelector('body').classList.add('animate'); //Animate body (opacity 0 to 1)
                 obj.contacts = c; //Update local contacts copy
                 updateView(actualUpdater); //Update our view
                 obj.renderScript(viewName); //Render view script
                 (success) ? success(): null; //Call promise
             });
-            document.querySelector('body').innerHTML = _views[viewName]; //Load view HTML into body
-            document.querySelector('body').classList.add('animate'); //Animate body (opacity 0 to 1)
         } else {
             log_error('Script does not exists');
         }
@@ -138,7 +139,7 @@ window.viewManager = (function() {
      * * * * * * * * *
      */
 
-    function updateView(aObjects) {//Run each time the database is modified
+    function updateView(aObjects) { //Run each time the database is modified
         log_info('UpdateView launched');
         var dataSource;
         if (typeof aObjects == 'string') { //it is a source path, we will access it using eval, it will bind object changes into the view
