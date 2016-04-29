@@ -34,10 +34,11 @@ log_info('General listeners added');
 //Adding enter key listeners
 log_info('Adding enter key listeners');
 for (var i = 0; i < inputs.length; i++) { //Looping all form inputs
-    inputs[i].addEventListener('keypress', function(e) {
-        var code = (e.keyCode ? e.keyCode : e.which); //Get keycode
+    inputs[i].addEventListener('keypress', function(event) {
+        var code = (event.keyCode ? event.keyCode : event.which); //Get keycode
         if (code == 13) { //Enter keycode
             save();
+            return false;
         }
     });
 }
