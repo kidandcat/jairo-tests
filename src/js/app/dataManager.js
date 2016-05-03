@@ -154,7 +154,7 @@ window.dataManager = (function() {
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             obj.countries = JSON.parse(xhttp.response);
-            log_info('Countries fetched');
+            log_info('Countries fetched: ', obj.countries);
         }
     };
     xhttp.open("GET", 'http://data.okfn.org/data/core/country-list/r/data.json', true);

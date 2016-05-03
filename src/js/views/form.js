@@ -51,10 +51,15 @@ log_info('Starting country logic');
 var selectOpts = ''; //Store all options here
 var selected = ''; //This will be the selected option
 log_info('Filling country options');
-window.dataManager.countries.forEach(function(country) { //Looping countries object
-    selected = (selected = !'' && country.Code == select.getAttribute('value')) ? 'selected="selected"' : ''; //If the option code is the same than the select value, we select that option as selected
-    selectOpts += "<option " + selected + " value=" + country.Code + ">" + country.Name + "</option>"; //Save all options
-});
+if(window.dataManager.countries){
+  window.dataManager.countries.forEach(function(country) { //Looping countries object
+      selected = (selected = !'' && country.Code == select.getAttribute('value')) ? 'selected="selected"' : ''; //If the option code is the same than the select value, we select that option as selected
+      selectOpts += "<option " + selected + " value=" + country.Code + ">" + country.Name + "</option>"; //Save all options
+  });
+}else{
+  selectOpts += "<option " + 'selected="selected"' + " value=" + 'ES' + ">" + 'Spain' + "</option>";
+}
+
 log_info('Options filled, selected: ', selected);
 select.innerHTML = selectOpts; //Put options into the select
 log_info('Finished country logic');
