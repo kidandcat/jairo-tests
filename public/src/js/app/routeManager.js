@@ -1,24 +1,45 @@
-var router = new Navigo(root = null, useHash=false);
+window.routeManager = (function() {
+    var obj = {};
+    var queue = [];
+    obj.router = new Navigo();
 
-router.on({
-  '/contacts': contacts,
-  '/test': test
-});
+    obj.router.on({
+        '/contacts': contacts,
+        '/new': neww
+    });
 
-router.on(function () {
-  log_error('404 Not found');
-});
+    obj.router.on(function() {
+        contacts();
+    });
 
+    //router.navigate('/products/list');
 
-function contacts(){
-  window.viewManager.renderView('contacts', 'viewManager.contacts');
-}
+    function contacts() {
+      if(window.allReadyNumber < 5){
+        queue.push(contacts);
+      }else{
+        log_info('Router::Rendering contacts');
+        window.viewManager.loadView('contacts');
+        window.viewManager.renderView('contacts', 'viewManager.contacts');
+      }
+    }
 
-function test(){
-  alert('nice');
-}
+    function neww() {
+      if(window.allReadyNumber < 5){
+        queue.push(neww);
+      }else{
+        log_info('Router::Rendering new');
+        window.viewManager.loadView('form');
+        window.viewManager.renderView('form');
+      }
+    }
 
-function preload(){
-  window.viewManager.loadView('contacts');
-  window.viewManager.loadView('form');
-}
+    window.allReadyStart = function(){
+      queue.forEach(function(ff){
+        ff.call();
+      });
+    }
+    log_info('RouteManager ready!');
+    window.allReadyNumber = window.allReadyNumber ? window.allReadyNumber + 1 : 1; //We are loaded, info
+    return obj;
+})();

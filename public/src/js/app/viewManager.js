@@ -13,6 +13,9 @@ window.viewManager = (function() {
 
         //Code BEGIN
         //Ajax request to src/views/ viewname
+        if(typeof _views[viewName] != 'undefined'){
+          return false;
+        }
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -89,7 +92,10 @@ window.viewManager = (function() {
                 (success) ? success(): null; //Call promise
             });
         } else {
-            log_error('View does not exists');
+            //second chance
+            setTimeout(function(){
+              obj.renderView(viewName, updateQuery);
+            }, 500);
         }
 
 

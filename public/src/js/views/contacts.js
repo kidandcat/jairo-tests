@@ -41,6 +41,5 @@ for (var i = 0; i < cc2.length; i++) {
 //Adding new button listener
 log_info('Adding new button listener');
 document.querySelector('#newBtn').addEventListener('click', function(){
-  log_info('Rendering form view');
-  viewManager.renderView('form'); //Render form without any data
+  window.routeManager.router.navigate('new'); //Render form without any data
 });

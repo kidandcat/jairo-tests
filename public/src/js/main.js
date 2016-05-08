@@ -9,14 +9,7 @@
  */
 window.allReadyNumber = window.allReadyNumber ? window.allReadyNumber + 1 : 1; //We are loaded, info
 window.log_info('Main.js ready!');
-window.allReadyStart = function() { //function to execute when all async scripts are loaded
-    log_info('Initial loading contacts view');
-    window.viewManager.loadView('contacts').then(function(ee) { //load view contacts
-        log_info('Initial rendering contacts view');
-        window.viewManager.renderView('contacts', 'viewManager.contacts'); //when view loaded, render it with data source viewManager.contacts
-        window.viewManager.loadView('form'); //load the rest of needed views
-    });
-};
+
 
 
 

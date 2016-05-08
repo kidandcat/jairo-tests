@@ -69,7 +69,7 @@ log_info('Finished country logic');
 //Functions
 function back() { //Go back by rendering contacts view
     log_info('Back launched');
-    window.viewManager.renderView('contacts', 'viewManager.contacts');
+    window.routeManager.router.navigate('contacts');
 }
 
 function validateMail() { //Validate email
@@ -94,7 +94,7 @@ function delete_() { // _ because delete is a reserver word
     log_info('Deleting contact: ', contact)
     window.dataManager.deleteContact(contact).then(function(removed) { //Delete (obj)Contact coincidences
         log_info('Contact deleted: ', contact);
-        window.viewManager.renderView('contacts', 'viewManager.contacts'); //Then render contacts (go back)
+        window.routeManager.router.navigate('contacts'); //Then render contacts (go back)
     }).error(function(e) { //Case error
         log_error(new Error('Error deleting contact', 'form.js', 67)); //Call error manager with usefull info
     });
@@ -124,7 +124,7 @@ function save() { //Save modified contact
             _id: id //UpdateOne
         }, contact).then(function(n) {
             log_info('Contacts updated: ', n);
-            window.viewManager.renderView('contacts', 'viewManager.contacts'); //Then render contacts view
+            window.routeManager.router.navigate('contacts'); //Then render contacts view
         }).error(function(e) {
             log_error(new Error('Error updating contact', 'form.js', 97)); //Call error manager with usefull info
         });
@@ -132,7 +132,7 @@ function save() { //Save modified contact
         log_info('Creating contact: ', contact);
         window.dataManager.createContact(contact).then(function() {
             log_info('Contact created: ', contact);
-            window.viewManager.renderView('contacts', 'viewManager.contacts'); //Rendering contacts view
+            window.routeManager.router.navigate('contacts'); //Rendering contacts view
         }).error(function(e) { //Case error
             log_error(new Error('Error creating contact', 'form.js', 105)); //Call error manager with usefull info
         });
