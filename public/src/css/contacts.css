@@ -1,0 +1,84 @@
+.listContacts {
+    position: fixed;
+    width: 50%;
+    max-width: 600px;
+    min-width: 250px;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.contactControls {
+    margin: 10px;
+}
+.contact {
+    display: flex;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    padding: 10px;
+    transition: 0.5s;
+    height: 43px;
+    margin: 3px;
+}
+.newBtn{
+  height: 30px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.contact:hover {
+    border: 1px solid deepskyblue;
+    transition: 0.2s;
+}
+.title {
+    flex: 1;
+    display: inline-block;
+}
+.editBtn {
+    flex: 0.15;
+    height: 24px;
+}
+.info {
+    position: absolute;
+    height: 40px;
+    left: 15px;
+    transition: 0.3s;
+    opacity: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    pointer-events: none;
+}
+
+.info .elem{
+  flex: 1;
+  display: flex;
+}
+
+.info .elem span, a{
+  margin-right: 5%;
+  width: 50%;
+  display: inline-block;
+  flex: 1;
+  text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.animationInfo{
+  opacity: 1;
+  transform: translateY(70%);
+  transition: 0.5s;
+  pointer-events: all;
+}
+
+.animationContact{
+  border-color: deepskyblue;
+  height: 120px;
+  transition: 1s;
+}
