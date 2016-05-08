@@ -89,7 +89,7 @@ window.viewManager = (function() {
                 (success) ? success(): null; //Call promise
             });
         } else {
-            log_error('Script does not exists');
+            log_error('View does not exists');
         }
 
 
