@@ -4,7 +4,7 @@ window.viewManager = (function() {
     var actualUpdater = ''; //Actual view update data source
     var _views = {}; //All views loaded
     var _scripts = {}; //All scripts loaded
-    obj.contacts = []; //Contacts list, local copy updated from the dataManager
+    obj.contacts = null; //Contacts list, local copy updated from the dataManager
 
 
     obj.loadView = function(viewName) { //Load a view and save it
@@ -27,7 +27,7 @@ window.viewManager = (function() {
                 (error) ? error(xhttp.status): null;
             }
         };
-        xhttp.open("GET", "src/views/" + viewName + '.html', true);
+        xhttp.open("GET", "/src/views/" + viewName + '.html', true);
         xhttp.send();
         //Code END
 
@@ -53,13 +53,13 @@ window.viewManager = (function() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                _scripts[viewName] = "src/js/views/" + viewName + '.js';
+                _scripts[viewName] = "/src/js/views/" + viewName + '.js';
                 (success) ? success(): null;
             } else if (xhttp.readyState == 4) {
                 (error) ? error(xhttp.status): null;
             }
         };
-        xhttp.open("GET", "src/js/views/" + viewName + '.js', true);
+        xhttp.open("GET", "/src/js/views/" + viewName + '.js', true);
         xhttp.send();
 
         return {
@@ -136,6 +136,8 @@ window.viewManager = (function() {
             updateView(actualUpdater);
         });
     }
+
+
 
 
 

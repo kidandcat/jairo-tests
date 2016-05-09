@@ -7,15 +7,19 @@ window.dataManager = (function() {
         var error = null; //Promise
 
         log_info('DataManager creating contact: ', contact);
-        window.database_api.insert(contact, function(err, newContact) { //Database insert
-            if (err) {
-                (error) ? error(err): null;
-            } else {
-                (success) ? success(newContact): null; //Success, call promise
-                //viewManager.update(); //Database modified, trigger update event in view
-                log_info('DataManager contact created');
-            }
+        obj.listContacts().then(function(cc){
+          contact._id = cc.length+1;
+          window.database_api.insert(contact, function(err, newContact) { //Database insert
+              if (err) {
+                  (error) ? error(err): null;
+              } else {
+                  (success) ? success(newContact): null; //Success, call promise
+                  //viewManager.update(); //Database modified, trigger update event in view
+                  log_info('DataManager contact created');
+              }
+          });
         });
+
 
         //Promise
         return {

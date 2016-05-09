@@ -32,7 +32,7 @@ for (var i = 0; i < cc2.length; i++) {
     viewManager.contacts.forEach(function(c){ //Locate contact by id
       if(c._id == id){ //If we get a match
         log_info('Contact located, rendering ');
-        viewManager.renderView('form', 'viewManager.contacts[' + viewManager.contacts.indexOf(c) + ']'); //Render form with data source the contact found
+        routeManager.router.navigate('edit/' + id);
       }
     });
   });
