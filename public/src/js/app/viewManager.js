@@ -13,7 +13,7 @@ window.viewManager = (function() {
 
         //Code BEGIN
         //Ajax request to src/views/ viewname
-        if(typeof _views[viewName] != 'undefined'){
+        if(typeof _views[viewName] != 'undefined'){ //if view already exists
           return false;
         }
         var xhttp = new XMLHttpRequest();

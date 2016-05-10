@@ -3,57 +3,58 @@ window.routeManager = (function() {
     var queue = [];
     obj.router = new Navigo();
 
-    obj.router.on({
-        '/contacts': contacts,
-        '/new': neww,
-        '/edit/:id': edit
+    obj.router.on({ //Set client app routes
+        '/contacts': contacts, //contacts list
+        '/new': neww, //new contact
+        '/edit/:id': edit //edit contact
     });
 
-    obj.router.on(function() {
+    obj.router.on(function() { //Default path
         obj.router.navigate('contacts');
     });
 
-    //router.navigate('/products/list');
+    //router.navigate('/products/list');  how to use
 
     function contacts() {
-        if (window.allReadyNumber < 4) {
-            queue.push({
+        if (window.allReadyNumber < 4) { //check if all scripts loaded
+            queue.push({ //push this function to the queue as all scripts are not loaded
                 f: contacts
             });
         } else {
             log_info('Router::Rendering contacts');
-            window.viewManager.loadView('contacts');
-            window.viewManager.renderView('contacts', 'viewManager.contacts');
+            window.viewManager.loadView('contacts'); //load view 'contacts'
+            window.viewManager.renderView('contacts', 'viewManager.contacts'); //render view 'contacts'
         }
     }
 
-    function edit(params) {
-        if (window.allReadyNumber < 4) {
-            queue.push({
+    function edit(params) { //edit contact
+        if (window.allReadyNumber < 4) { //check if all scripts loaded
+            queue.push({ //push this function to the queue as all scripts are not loaded
                 f: edit,
                 p: params
             });
         } else {
             log_info('Router::Rendering edit');
-            window.viewManager.loadView('form');
+            window.viewManager.loadView('form'); //load view 'form'
             var contact;
-            if (!viewManager.contacts) {
-                dataManager.listContacts().then(function(c) {
+            if (!viewManager.contacts) { //if contacts list is already loaded, read it else
+                dataManager.listContacts().then(function(c) { //ask dataManager for all contacts
                     log_info('Contacts: ', c);
-                    viewManager.contacts = c;
-                    c.forEach(function(cc) {
+                    viewManager.contacts = c; //save the list into the viewManager.contacts
+                    c.forEach(function(cc) { //loop all contacts
                         log_info('Contact: ', cc);
-                        if (cc._id == params.id) {
-                            contact = cc;
+                        if (cc._id == params.id) { //if we find the id we are looking for
+                            contact = cc; //select it
                         }
                     });
-                    if (contact) {
-                        window.viewManager.renderView('form', contact);
+                    if (contact) { // if we found a matching id
+                        window.viewManager.renderView('form', contact); //render form with that contact data
                     } else {
-                        obj.router.navigate('404');
+                        obj.router.navigate('404'); //else, not found
                     }
                 });
             } else {
+              //mimic top behavior
                 viewManager.contacts.forEach(function(cc) {
                     log_info('Contact: ', cc);
                     if (cc._id == params.id) {
@@ -69,9 +70,9 @@ window.routeManager = (function() {
         }
     }
 
-    function neww() {
-        if (window.allReadyNumber < 4) {
-            queue.push({
+    function neww() { //new contact
+        if (window.allReadyNumber < 4) {//check if all scripts loaded
+            queue.push({//push this function to the queue as all scripts are not loaded
                 f: neww
             });
         } else {
@@ -81,9 +82,9 @@ window.routeManager = (function() {
         }
     }
 
-    window.allReadyStart = function() {
-        queue.forEach(function(ff) {
-            ff.f(ff.p);
+    window.allReadyStart = function() { //application startpoint, it is launched when all scripts are loaded
+        queue.forEach(function(ff) { //loop the queue
+            ff.f(ff.p || null); //launch the function ff.f with the params ff.p if they exists or null
         });
     }
     log_info('RouteManager ready!');
