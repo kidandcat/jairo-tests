@@ -7,8 +7,6 @@
  * Then load the rest of the views (just form view).
  * Provide a console API.
  */
-window.allReadyNumber = window.allReadyNumber ? window.allReadyNumber + 1 : 1; //We are loaded, info
-window.log_info('Main.js ready!');
 
 
 
