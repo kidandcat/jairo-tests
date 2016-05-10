@@ -16,7 +16,7 @@ window.routeManager = (function() {
     //router.navigate('/products/list');
 
     function contacts() {
-        if (window.allReadyNumber < 5) {
+        if (window.allReadyNumber < 4) {
             queue.push({
                 f: contacts
             });
@@ -28,7 +28,7 @@ window.routeManager = (function() {
     }
 
     function edit(params) {
-        if (window.allReadyNumber < 5) {
+        if (window.allReadyNumber < 4) {
             queue.push({
                 f: edit,
                 p: params
@@ -70,7 +70,7 @@ window.routeManager = (function() {
     }
 
     function neww() {
-        if (window.allReadyNumber < 5) {
+        if (window.allReadyNumber < 4) {
             queue.push({
                 f: neww
             });
