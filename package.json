@@ -1,0 +1,25 @@
+{
+  "name": "mavrix-challenge",
+  "version": "1.0.0",
+  "description": "Mavrix javascript challenge",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kidandcat/jairo-tests.git"
+  },
+  "author": "Jairo Caro-Accino Viciana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kidandcat/jairo-tests/issues"
+  },
+  "homepage": "https://github.com/kidandcat/jairo-tests#readme"
+}
